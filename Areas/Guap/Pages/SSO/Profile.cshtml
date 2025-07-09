@@ -1,0 +1,118 @@
+﻿@*
+	Компонент библиотеки Guap.Net8.Web.
+	Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@page
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@model Guap.Net8.Web.Areas.Guap.Pages.SSO.ProfileModel
+@{
+	Current.Page.Title = "Профиль пользователя";
+
+	var claims1 = User.Claims.OrderBy(x => x.Type).AsEnumerable();
+}
+
+
+<div class="my-5">
+	<div class="row my-3">
+		<label class="col-md-3 form-label">Учетная запись</label>
+		<div class="col-md-6">@User.Identity.Name</div>
+	</div>
+	<div class="row my-3">
+		<label class="col-md-3 form-label">Эл. почта</label>
+		<div class="col-md-6">@User.GetEmailFromClaim()</div>
+	</div>
+	<div class="row my-3">
+		<label class="col-md-3 form-label">Отображаемое имя</label>
+		<div class="col-md-6">@User.GetNameFromClaim().ToHtml()</div>
+	</div>
+	<div class="row my-3">
+		<div class="col-md-6 offset-md-3">
+			<a class="btn btn-primary" href="@Url.Content("~/guap/sso/logout")">Завешить сеанс</a>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="row my-3">
+	<label class="col-md-3 form-label">Приложение</label>
+	<div class="col-md-6">@Current.Configuration.GetOptions_GuapNet8Web().AppName</div>
+</div>
+
+<div class="row my-3">
+	<label class="col-sm-3 form-label">Права</label>
+	<div class="col-sm-6">
+		@{
+			var s1 = "bi-check-circle-fill text-success";
+			var s2 = "bi-x-circle text-danger";
+		}
+		<div><i class="@HttpContext.IsClaimsAdmin().Make(s1, s2)"></i> Administrator</div>
+		<div><i class="@HttpContext.IsClaimsModerator().Make(s1, s2)"></i> Moderator</div>
+		<div><i class="@HttpContext.IsClaimsWriter().Make(s1, s2)"></i> Writer</div>
+		<div><i class="@HttpContext.IsClaimsReader().Make(s1, s2)"></i> Reader</div>
+		<div><i class="@HttpContext.IsClaimsUser().Make(s1, s2)"></i> User</div>
+	</div>
+</div>
+
+@{
+	var roles1 = User.GetRolesFromClaim();
+}
+<div class="row my-3">
+	<label class="col-sm-3 form-label">Группы доступа</label>
+	<div class="col-sm-6">
+		@if (roles1.Any())
+		{
+			foreach (var role1 in roles1.OrderBy(x => x))
+			{
+				<div><i class="bi-check-circle text-primary"></i> @role1</div>
+			}
+		}
+		else
+		{
+			<div><em>нет</em></div>
+		}
+	</div>
+</div>
+
+@{
+	var access1 = claims1.Where(x => x.Type == Ans.Net8.Web._Consts.CLAIM_ACTIONS_TYPE);
+}
+<div class="row my-3">
+	<label class="col-sm-3 form-label">Доступ к контроллерам</label>
+	<div class="col-sm-6">
+		@if (access1.Any())
+		{
+			foreach (var item1 in access1)
+			{
+				<div>[@item1.Value]</div>
+			}
+		}
+		else
+		{
+			<div><em>нет</em></div>
+		}
+	</div>
+</div>
+
+@{
+	var resources1 = claims1.Where(x => x.Type == Ans.Net8.Web._Consts.CLAIM_RESOURCES_TYPE);
+}
+<div class="row my-3">
+	<label class="col-sm-3 form-label">Ресурсы</label>
+	<div class="col-sm-6">
+		@if (resources1.Any())
+		{
+			foreach (var item1 in resources1)
+			{
+				<div>[@item1.Value]</div>
+			}
+		}
+		else
+		{
+			<div><em>нет</em></div>
+		}
+	</div>
+</div>
+
+<partial name="_UserInfo.cshtml" />

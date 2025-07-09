@@ -1,0 +1,19 @@
+﻿@*
+	Компонент библиотеки Guap.Net8.Web.
+	Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@page
+@using System.Security.Claims
+@model Guap.Net8.Web.Areas.Guap.Pages.SSO.AccessDeniedModel
+@{
+	Current.Page.Title = "Доступ закрыт";
+
+	var claims1 = User.Claims.OrderBy(x => x.Type).AsEnumerable();
+}
+<p>Для учетной записи <code>@User.Identity.Name <nobr>(@User.GetNameFromClaim().ToHtml())</nobr></code> не предоставлен доступ к этому ресурсу.</p>
+
+<div class="mb-5 text-center">
+	<img class="img-fluid" style="max-height:25rem;" src="@Current.Options.Errors?.Picture403" alt="" />
+</div>
+
+<partial name="_UserInfo.cshtml" />

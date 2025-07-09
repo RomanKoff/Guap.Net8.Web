@@ -1,0 +1,16 @@
+﻿@*
+	Компонент библиотеки Guap.Net8.Web.
+	Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@{
+	var claims1 = User.Claims.OrderBy(x => x.Type).AsEnumerable();
+}
+<div class="my-5 d-none1 small opacity-50">
+	<div>User.Identity.Name = @User.Identity.Name</div>
+	<div>Email = @User.GetEmailFromClaim()</div>
+	<div>DisplayedName = @User.GetNameFromClaim().ToHtml()</div>
+	@foreach (var item1 in claims1)
+	{
+		<div>@item1.Type = @item1.Value.ToHtml()</div>
+	}
+</div>

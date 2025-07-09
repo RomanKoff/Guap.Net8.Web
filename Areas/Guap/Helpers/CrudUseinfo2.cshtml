@@ -1,0 +1,13 @@
+﻿@*
+Компонент библиотеки Guap.Net8.Web.
+Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@model (string CreateUser, string UpdateUser)
+@{
+	var RegUsers = this.Context.GetGuapUsersRegistry();
+}
+@@@RegUsers.GetValueOrKey(Model.CreateUser).ToHtml()
+@if (!string.IsNullOrEmpty(Model.UpdateUser) && Model.UpdateUser != Model.CreateUser)
+{
+	<span title="@RegUsers.GetValueOrKey(Model.UpdateUser).ToHtml()">+</span>
+}

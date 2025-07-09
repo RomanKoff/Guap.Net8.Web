@@ -1,0 +1,13 @@
+﻿@*
+Компонент библиотеки Guap.Net8.Web.
+Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@model (DateTime? DateCreate, string CreateUser, DateTime? DateUpdate, string UpdateUser)
+@{
+	var RegUsers = this.Context.GetGuapUsersRegistry();
+}
+<div>Создано: @Model.DateCreate?.ToString("g") (@RegUsers.GetValueOrKey(Model.CreateUser).ToHtml())</div>
+@if (!string.IsNullOrEmpty(Model.UpdateUser))
+{
+	<div>Обновлено: @Model.DateUpdate?.ToString("g") (@RegUsers.GetValueOrKey(Model.UpdateUser).ToHtml())</div>
+}
