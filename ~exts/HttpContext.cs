@@ -30,7 +30,7 @@ namespace Guap.Net8.Web
 			var reg1 = new RegistryList(
 				context.GetGuapUsers().Select(
 					x => new RegistryItem(
-						x.Name, x.DisplayedName, 0, false)));
+						x.NameIdentifier, x.DisplayedName, 0, false)));
 			reg1.AddNullItem();
 			return reg1;
 		}

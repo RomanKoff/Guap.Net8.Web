@@ -57,15 +57,14 @@
 
 
 	<main role="main">
-		<page-container-body class="mb-5">
+		<page-container>
 			<partial name="/Areas/Ans/Helpers/Breadcrumbs.cshtml" />
-			@if (!await this.TrySectionAsync("PageHeaderSection"))
-			{
-				<partial name="/Areas/Ans/Helpers/PageTitle.cshtml" />
-			}
+			<partial name="/Areas/Ans/Helpers/PageTitle.cshtml" />
 			<partial name="/Areas/Ans/Helpers/PageSlaves.cshtml" />
+		</page-container>
+		<page-container class="mb-5">
 			@RenderBody()
-		</page-container-body>
+		</page-container>
 	</main>
 
 

@@ -35,9 +35,8 @@ namespace Guap.Net8.Web.Services
 		public GuapUserModel[] GetUsers()
 		{
 			var url1 = $"{_options.AuthApi.Url}/get-list-users";
-			var cacheKey1 = $"GetUsers";
 			var profile1 = new WebApiCachedHelper<GuapUserModel[]>(
-				_httpClient, _memoryCache, cacheKey1, url1, null, null)
+				_httpClient, _memoryCache, url1, url1, null, null)
 					.SendQuery().Content;
 			return profile1;
 		}
