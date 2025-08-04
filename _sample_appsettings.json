@@ -5,6 +5,8 @@
     "AppName": "",
     "AppTitle": "",
 
+    "HostDocs": "https://docs.guap.ru",
+
     "Sso": {
       "RequireHttpsMetadata": true,
       "Authority": "",
