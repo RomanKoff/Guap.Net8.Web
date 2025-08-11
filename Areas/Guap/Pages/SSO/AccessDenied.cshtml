@@ -10,9 +10,13 @@
 
 	var claims1 = User.Claims.OrderBy(x => x.Type).AsEnumerable();
 }
-<p>Для учетной записи <code>@User.Identity.Name <nobr>(@User.GetNameFromClaim().ToHtml())</nobr></code> не предоставлен доступ к этому ресурсу.</p>
+<p>
+	Для получения доступа сообщите администратору идентификатор вашей учетной записи:<br />
+	<code class="lead user-select-all">@User.GetNameIdentifierFromClaim()</code>
+</p>
 
-<div class="mb-5 text-center">
+
+<div class="my-5 text-center">
 	<img class="img-fluid" style="max-height:25rem;" src="@Current.Options.Errors?.Picture403" alt="" />
 </div>
 

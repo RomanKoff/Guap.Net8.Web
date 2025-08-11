@@ -15,6 +15,10 @@
 
 <div class="my-5">
 	<div class="row my-3">
+		<label class="col-md-3 form-label">Уникальный идентификатор</label>
+		<div class="col-md-6">@User.GetNameIdentifierFromClaim()</div>
+	</div>
+	<div class="row my-3">
 		<label class="col-md-3 form-label">Учетная запись</label>
 		<div class="col-md-6">@User.Identity.Name</div>
 	</div>

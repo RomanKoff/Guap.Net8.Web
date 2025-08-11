@@ -7,7 +7,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using NLog;
+using NLog.Web;
 using System.Diagnostics;
 
 namespace Guap.Net8.Web
@@ -17,6 +20,79 @@ namespace Guap.Net8.Web
 	{
 
 		/* methods */
+
+
+		public static void Init_GuapNet8Web(
+			Action<WebApplicationBuilder> builderAction,
+			Action<WebApplication> applicationAction)
+		{
+			var logger1 = LogManager.Setup()
+				.LoadConfigurationFromAppSettings()
+				.GetCurrentClassLogger();
+			logger1.Info("APP: Init");
+
+			try
+			{
+
+				/*
+				 * Builder
+				 */
+
+				var builder1 = WebApplication.CreateBuilder();
+				var configuration1 = builder1.Configuration;
+				var ans1 = configuration1.GetOptions_AnsNet8Web();
+				var guap1 = configuration1.GetOptions_GuapNet8Web();
+
+				/* nlog */
+				builder1.Logging.ClearProviders();
+				builder1.Host.UseNLog();
+
+				/* ans */
+				builder1.Add_AnsNet8Web(configuration1);
+
+				/* guap */
+				builder1.Add_GuapNet8Web(configuration1);
+
+				/* db */
+				//AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+				//builder1.Services.AddDbContext<AppDbContext>(o =>
+				//{
+				//	o.ConfigureWarnings(x => x.Ignore(RelationalEventId.BoolWithDefaultWarning));
+				//	o.UseNpgsql(builder1.Configuration.GetConnectionString("AppDbConnection"));
+				//});
+
+				builderAction?.Invoke(builder1);
+
+				/*
+				 * Application
+				 */
+
+				var app1 = builder1.Build();
+
+				/* ans */
+				app1.Use_AnsNet8Web(configuration1);
+
+				/* guap */
+				app1.Use_GuapNet8Web(configuration1);
+
+				//* db */
+				//app1.AppDbContext_Prepare(null);
+
+				applicationAction?.Invoke(app1);
+
+				app1.Run();
+
+			}
+			catch (Exception exception)
+			{
+				logger1.Error(exception, "APP: Stopped program because of exception");
+				throw;
+			}
+			finally
+			{
+				LogManager.Shutdown();
+			}
+		}
 
 
 		public static void Add_GuapNet8Web(

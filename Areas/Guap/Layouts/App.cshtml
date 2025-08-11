@@ -9,13 +9,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	@Current.Meta.Render()
 	<title>@Current.BrowserTitle()</title>
-	<link href="https://src.guap.ru/themes/app1/dist/main.min.css?6" rel="stylesheet" />
+	<link href="https://src.guap.ru/themes/app2/dist/theme.min.css?6" rel="stylesheet" />
+	<script defer src="https://src.guap.ru/themes/app2/dist/theme.min.js?6"></script>
 	<link href="https://src.guap.ru/libs/ckeditor5/dist/plug.min.css" rel="stylesheet" />
 	@await RenderSectionAsync("HeadSection", false)
 </head>
 
 <body class="d-flex flex-column h-100">
-	<span id="totop" onclick="toTop();"><i class="bi-chevron-up"></i></span>
+	<span id="totop" onclick="moveToTop();"><i class="bi-chevron-up"></i></span>
 
 
 	<style>
@@ -80,7 +81,6 @@
 	</div>
 
 
-	<script src="https://src.guap.ru/themes/app1/dist/main.min.js?6"></script>
 
 	<script type="module">
 
