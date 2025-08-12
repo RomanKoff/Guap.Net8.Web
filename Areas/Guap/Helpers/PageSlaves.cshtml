@@ -1,0 +1,29 @@
+@*
+	Компонент библиотеки Guap.Net8.Web.
+	Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@if (Current.Page.HasSlaves)
+{
+	OutItems(Current.Page.PageItem.Slaves, x => !x.IsHidden);
+}
+
+@functions {
+
+	void OutItems(IEnumerable<IMapItem> items, Func<IMapItem, bool> filter)
+	{
+		if (items == null)
+			return;
+		var items1 = items.Where(filter);
+		if (items1.Any())
+		{
+			<ul>
+				@foreach (var item1 in items1)
+				{
+					var tag1 = item1.Link.GetTag();
+					<li class="nav-item">@tag1</li>
+				}
+			</ul>
+		}
+	}
+
+}

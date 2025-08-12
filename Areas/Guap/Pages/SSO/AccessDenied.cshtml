@@ -11,10 +11,18 @@
 	var claims1 = User.Claims.OrderBy(x => x.Type).AsEnumerable();
 }
 <p>
-	Для получения доступа сообщите администратору идентификатор вашей учетной записи:<br />
-	<code class="lead user-select-all">@User.GetNameIdentifierFromClaim()</code>
+	Для получения доступа сообщите администратору следующую информацию:
 </p>
-
+<table class="table table-bordered w-auto">
+	<tr>
+		<td>Идентификатор:</td>
+		<td><code class="lead user-select-all">@User.GetNameIdentifierFromClaim()</code></td>
+	</tr>
+	<tr>
+		<td>Имя пользователя:</td>
+		<td><code class="user-select-all">@User.Identity.Name (@User.GetNameFromClaim().ToHtml())</code></td>
+	</tr>
+</table>
 
 <div class="my-5 text-center">
 	<img class="img-fluid" style="max-height:25rem;" src="@Current.Options.Errors?.Picture403" alt="" />

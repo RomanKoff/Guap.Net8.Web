@@ -55,6 +55,7 @@ namespace Guap.Net8.Web
 		: IGuapUserProfile
 	{
 		public string NameIdentifier { get; set; }
+		public string DisplayedName { get; set; }
 		public int Right { get; set; }
 		public string Roles { get; set; }
 		public string Actions { get; set; }

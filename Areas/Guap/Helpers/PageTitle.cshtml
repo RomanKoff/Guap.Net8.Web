@@ -1,0 +1,13 @@
+@*
+	Компонент библиотеки Guap.Net8.Web.
+	Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@{
+	var parents1 = (Current.IsOn("Page.Title.Parents"))
+		? Current.Page.ParentsTitles
+			.Make("<span class=\"opacity-75 fw-light\">{0}.</span> ")
+		: null;
+
+	var pageSummary1 = Current.GetData("PageSummary");
+}
+<h1 class="my-3">@parents1.ToHtml()@Current.Page.TitleHtml@pageSummary1.ToHtml("<div class=\"fs-5 opacity-75\">{0}</div>", true)</h1>

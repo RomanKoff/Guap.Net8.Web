@@ -1,0 +1,21 @@
+@*
+	Компонент библиотеки Guap.Net8.Web.
+	Код не предназначен для редактирования и компиляции во время выполнения!
+*@
+@if (Current.HasBreadcrumbs)
+{
+	var items1 = Current.Breadcrumbs.SkipLast(1);
+	var last1 = Current.Breadcrumbs.Last();
+	<nav id="breadcrumb" class="my-3" aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			@foreach (var item1 in items1)
+			{
+				var tag1 = item1.GetTag();
+				<li class="breadcrumb-item">@tag1.ToHtml()</li>
+			}
+			<li class="breadcrumb-item active opacity-50" aria-current="page">
+				@last1.InnerHtml.ToHtml()
+			</li>
+		</ol>
+	</nav>
+}

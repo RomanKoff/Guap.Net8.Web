@@ -32,6 +32,7 @@ namespace Guap.Net8.Web.Services
 			var users1 = _options.Users?.Select(x => new GuapUserModel
 			{
 				NameIdentifier = x.NameIdentifier,
+				DisplayedName = x.DisplayedName,
 			});
 			return [.. users1];
 		}
