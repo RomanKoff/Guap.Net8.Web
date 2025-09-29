@@ -22,6 +22,10 @@
 		<td>Имя пользователя:</td>
 		<td><code class="user-select-all">@User.Identity.Name (@User.GetNameFromClaim().ToHtml())</code></td>
 	</tr>
+	<tr>
+		<td>Приложение:</td>
+		<td><code class="user-select-all">@Current.Configuration.GetOptions_GuapNet8Web().AppName</code></td>
+	</tr>
 </table>
 
 <div class="my-5 text-center">
