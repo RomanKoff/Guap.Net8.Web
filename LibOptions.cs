@@ -7,14 +7,12 @@ namespace Guap.Net8.Web
 
 	public static partial class _e
 	{
-
 		private static LibOptions _libOptions;
 		public static LibOptions GetOptions_GuapNet8Web(
 			this IConfiguration configuration)
 		{
 			return _libOptions ??= configuration.GetOptions<LibOptions>("Guap.Net8.Web");
 		}
-
 	}
 
 
