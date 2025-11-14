@@ -23,7 +23,7 @@ namespace Guap.Net8.Web.Services
 		IConfiguration configuration)
 		: IGuapUsersProvider
 	{
-				
+
 		private readonly HttpClient _httpClient = httpClientFactory.CreateClient();
 		private readonly IMemoryCache _memoryCache = memoryCache;
 		private readonly LibOptions _options = configuration.GetOptions_GuapNet8Web();
@@ -47,7 +47,7 @@ namespace Guap.Net8.Web.Services
 			string nameIdentifier)
 		{
 			var application1 = _options.AppName;
-			var url1 = $"{_options.AuthApi.Url}/get-user/?application={application1}&nameIdentifier={nameIdentifier}";			
+			var url1 = $"{_options.AuthApi.Url}/get-user/?application={application1}&nameIdentifier={nameIdentifier}";
 			var profile1 = new WebApiCachedHelper<GuapUserProfileModel>(
 				_httpClient, _memoryCache, url1, url1, null, null)
 					.SendQuery().Content;
@@ -67,12 +67,13 @@ namespace Guap.Net8.Web.Services
 			string email,
 			string displayedName)
 		{
-			Debug.WriteLine($"GuapUsersProvider_AuthApi.UpdateUser(\"{nameIdentifier}\", \"{idUsername}\", \"{name}\", \"{email}\", \"{displayedName}\")");
 			var application1 = _options.AppName;
+			Debug.WriteLine($"GuapUsersProvider_AuthApi.UpdateUser(\"{application1}\", \"{nameIdentifier}\", \"{idUsername}\", \"{name}\", \"{email}\", \"{displayedName}\")");
 			var url1 = $"{_options.AuthApi.Url}/set-user?application={application1}&nameIdentifier={nameIdentifier}&idUsername={idUsername}&name={name}&surname={surname}&givenName={givenName}&email={email}&displayedName={displayedName}";
-			_ = new WebApiHelper<object>(
+			var result1 = new WebApiHelper<object>(
 				_httpClient, url1, null)
 					.SendQuery().Content;
+			Debug.WriteLine($"GuapUsersProvider_AuthApi.UpdateUser: '{result1}'");
 		}
 
 	}

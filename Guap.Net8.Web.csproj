@@ -26,8 +26,8 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="[8.0.21,9)" />
-		<PackageReference Include="NLog" Version="6.0.5" />
-		<PackageReference Include="NLog.Web.AspNetCore" Version="6.0.5" />
+		<PackageReference Include="NLog" Version="6.0.6" />
+		<PackageReference Include="NLog.Web.AspNetCore" Version="6.0.6" />
 	</ItemGroup>
 
 	<ItemGroup>

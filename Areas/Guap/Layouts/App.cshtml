@@ -20,20 +20,13 @@
 <body class="d-flex flex-column h-100">
 	<span id="totop" onclick="moveToTop();"><i class="bi-chevron-up"></i></span>
 
-
-	<style>
-		.guap-header-nav {
-			--bs-nav-link-padding-x: .2rem;
-			--bs-nav-link-padding-y: .2rem;
-		}
-	</style>
 	<header id="guap_header" class="py-1 bg-light">
 		<site-container>
 			<div class="d-flex align-items-center gap-2 lh-sm text-break">
 				<a target="_blank" href="https://guap.ru/"><img style="max-height:1.4rem;" src="https://src.guap.ru/logos/guap/guap.svg" /></a>
 				@if (Current.Configuration.GetOptions_GuapNet8Web().Sso != null)
 				{
-					<ul class="ms-auto nav guap-header-nav">
+					<ul class="nav ms-auto" style="--bs-nav-link-padding-x:.2rem;--bs-nav-link-padding-y:.2rem;">
 						@if (User.Identity.IsAuthenticated)
 						{
 							<li class="nav-item"><a class="nav-link icon-link" href="@Url.Content("~/guap/sso/profile")"><i class="bi-person-square"></i>@User.GetNameFromClaim().ToHtml()</a></li>
@@ -75,7 +68,10 @@
 		<footer id="site_footer" class="py-3 bg-dark text-light">
 			<site-container>
 				<div class="d-flex align-items-center gap-3 lh-sm small">
-					<div class="text-break">@Current.Site.TitleHtml</div>
+					<div>
+						<div class="text-break fw-medium">@Current.Site.TitleHtml</div>
+						<div class="fs-9 fw-light opacity-50">@Guap.Net8.Web.LibInfo.GetName() ver. @Guap.Net8.Web.LibInfo.GetVersion()</div>
+					</div>
 					<a target="_blank" href="https://guap.ru/it" class="ms-auto link-light icon-link"><img style="max-height:1.5rem;" src="https://src.guap.ru/logos/it/logo_w.svg" alt="УЦР ГУАП" />Сервисы УЦР&nbsp;ГУАП</a>
 				</div>
 			</site-container>
