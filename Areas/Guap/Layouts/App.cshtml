@@ -1,7 +1,7 @@
 ﻿@{
 	Current.Site.Title = Current.Configuration.GetOptions_GuapNet8Web().AppTitle;
 
-	var ver1 = 13;
+	var ver1 = 1;
 }
 <!DOCTYPE html>
 <html lang="@Current.Culture" class="h-100">
@@ -11,9 +11,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 	@Current.Meta.Render()
 	<title>@Current.BrowserTitle()</title>
-	<link href="https://src.guap.ru/themes/app2/dist/theme.min.css?@ver1" rel="stylesheet" />
-	<script defer src="https://src.guap.ru/themes/app2/dist/theme.min.js?@ver1"></script>
-	<link href="https://src.guap.ru/libs/ckeditor5/dist/plug.min.css" rel="stylesheet" />
+	<link href="https://src.guap.ru/themes/app3/dist/theme.min.css?@ver1" rel="stylesheet" />
 	@await RenderSectionAsync("HeadSection", false)
 </head>
 
@@ -79,33 +77,42 @@
 	</div>
 
 
+	<script defer src="https://src.guap.ru/themes/app3/dist/theme.min.js?@ver1"></script>
+
+	<link href="https://src.guap.ru/libs/ckeditor5/47.2.0/dist/plug.min.css" rel="stylesheet" />
 
 	<script type="module">
 
-		import {
-			TypografText,
-			TypografArticle,
-		} from 'https://src.guap.ru/libs/typograf7/dist/plug.min.js';
+		import Ckeditor_Ru
+			from 'https://src.guap.ru/libs/ckeditor5/47.2.0/ckeditor5/translations/ru.js';
 
 		import {
-			Ckeditor_Make_HtmlArticles,
-			Ckeditor_HtmlArticles,
-		} from 'https://src.guap.ru/libs/ckeditor5/dist/plug.min.js';
+			Ckeditor_MakeArticle
+		}
+			from 'https://src.guap.ru/libs/ckeditor5/47.2.0/dist/plug.min.js';
 
-		const Typograf_String_Items = document.querySelectorAll('.typograf-string');
+		import {
+			TYPOGRAF_FOR_STRING,
+			TYPOGRAF_FOR_ARTICLE,
+		}
+			from 'https://src.guap.ru/libs/typograf/7.6.0/dist/plug.min.js';
+
+		const
+			CKEDITORS1 = Ckeditor_MakeArticle('.html-article'),
+			TYPOGRAF_STRING1 = [...document.querySelectorAll('.typograf-string')];
 
 		[...document.getElementsByTagName('form')].forEach((f1) => {
 			f1.addEventListener("submit", () => {
-				Typograf_String_Items.forEach((e1) => {
-					e1.value = TypografText.execute(e1.value);
+				CKEDITORS1.forEach((e1) => {
+					e1.setData(TYPOGRAF_FOR_ARTICLE.execute(e1.getData()));
 				});
-				Ckeditor_HtmlArticles.forEach((e1) => {
-					e1.setData(TypografArticle.execute(e1.getData()));
+				TYPOGRAF_STRING1.forEach((e1) => {
+					e1.value = TYPOGRAF_FOR_STRING.execute(e1.value);
 				});
 			});
 		});
 
-		Ckeditor_Make_HtmlArticles();
+
 
 	</script>
 

@@ -30,7 +30,6 @@ namespace Guap.Net8.Web
 
 		public string AppName { get; set; }
 		public string AppTitle { get; set; }
-		public string HostDocs { get; set; }
 		public SsoOptions Sso { get; set; }
 		public AppUsers[] Users { get; set; }
 		public AuthApi AuthApi { get; set; }
