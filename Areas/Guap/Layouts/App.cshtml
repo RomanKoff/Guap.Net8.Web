@@ -1,7 +1,7 @@
 ﻿@{
-	Current.Site.Title = Current.Configuration.GetOptions_GuapNet8Web().AppTitle;
+	Current.Site.Title = Current.Configuration.GetLibGuapOptions().AppTitle;
 
-	var ver1 = 1;
+	var ver1 = 2;
 }
 <!DOCTYPE html>
 <html lang="@Current.Culture" class="h-100">
@@ -22,7 +22,7 @@
 		<site-container>
 			<div class="d-flex align-items-center gap-2 lh-sm text-break">
 				<a target="_blank" href="https://guap.ru/"><img style="max-height:1.4rem;" src="https://src.guap.ru/logos/guap/guap.svg" /></a>
-				@if (Current.Configuration.GetOptions_GuapNet8Web().Sso != null)
+				@if (Current.Configuration.GetLibGuapOptions().Sso != null)
 				{
 					<ul class="nav ms-auto" style="--bs-nav-link-padding-x:.2rem;--bs-nav-link-padding-y:.2rem;">
 						@if (User.Identity.IsAuthenticated)
@@ -63,12 +63,15 @@
 
 
 	<div class="mt-auto">
-		<footer id="site_footer" class="py-3 bg-dark text-light">
+		<footer id="site_footer" class="py-2 bg-dark text-light">
 			<site-container>
 				<div class="d-flex align-items-center gap-3 lh-sm small">
 					<div>
 						<div class="text-break fw-medium">@Current.Site.TitleHtml</div>
-						<div class="fs-9 fw-light opacity-50">@Guap.Net8.Web.LibInfo.GetName() ver. @Guap.Net8.Web.LibInfo.GetVersion()</div>
+						<div class="fs-9 fw-light opacity-50">
+							@Guap.Net8.Web.LibInfo.GetName() ver. @Guap.Net8.Web.LibInfo.GetVersion().
+							<nobr>IP: @Current.Network.RemoteIpAddress</nobr>
+						</div>
 					</div>
 					<a target="_blank" href="https://guap.ru/it" class="ms-auto link-light icon-link"><img style="max-height:1.5rem;" src="https://src.guap.ru/logos/it/logo_w.svg" alt="УЦР ГУАП" />Сервисы УЦР&nbsp;ГУАП</a>
 				</div>

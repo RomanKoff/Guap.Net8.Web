@@ -6,6 +6,7 @@
 	var claims1 = User.Claims.OrderBy(x => x.Type).AsEnumerable();
 }
 <div class="my-5 d-none1 small opacity-50">
+	<div>IpAddress = @Current.Network.RemoteIpAddress</div>
 	<div>User.Identity.Name = @User.Identity.Name</div>
 	<div>Email = @User.GetEmailFromClaim()</div>
 	<div>DisplayedName = @User.GetNameFromClaim().ToHtml()</div>

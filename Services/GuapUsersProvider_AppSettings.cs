@@ -20,8 +20,8 @@ namespace Guap.Net8.Web.Services
 		: IGuapUsersProvider
 	{
 
-		private readonly LibOptions _options
-			= configuration.GetOptions_GuapNet8Web();
+		private readonly LibGuapOptions _options
+			= configuration.GetLibGuapOptions();
 
 
 		/* functions */

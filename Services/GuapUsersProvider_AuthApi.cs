@@ -26,7 +26,7 @@ namespace Guap.Net8.Web.Services
 
 		private readonly HttpClient _httpClient = httpClientFactory.CreateClient();
 		private readonly IMemoryCache _memoryCache = memoryCache;
-		private readonly LibOptions _options = configuration.GetOptions_GuapNet8Web();
+		private readonly LibGuapOptions _options = configuration.GetLibGuapOptions();
 
 
 		/* functions */

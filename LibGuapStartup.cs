@@ -16,7 +16,7 @@ using System.Diagnostics;
 namespace Guap.Net8.Web
 {
 
-	public static class LibStartup
+	public static class LibGuapStartup
 	{
 
 		/* methods */
@@ -40,8 +40,8 @@ namespace Guap.Net8.Web
 
 				var builder1 = WebApplication.CreateBuilder();
 				var configuration1 = builder1.Configuration;
-				var ans1 = configuration1.GetOptions_AnsNet8Web();
-				var guap1 = configuration1.GetOptions_GuapNet8Web();
+				var ans1 = configuration1.GetLibWebOptions();
+				var guap1 = configuration1.GetLibGuapOptions();
 
 				/* nlog */
 				builder1.Logging.ClearProviders();
@@ -99,7 +99,7 @@ namespace Guap.Net8.Web
 			this WebApplicationBuilder builder,
 			IConfiguration configuration)
 		{
-			var options1 = configuration.GetOptions_GuapNet8Web();
+			var options1 = configuration.GetLibGuapOptions();
 
 			// IServiceCollection
 
@@ -118,7 +118,7 @@ namespace Guap.Net8.Web
 			this WebApplication app,
 			IConfiguration configuration)
 		{
-			var options1 = configuration.GetOptions_GuapNet8Web();
+			var options1 = configuration.GetLibGuapOptions();
 
 			if (options1.Sso != null)
 				app.UseAuthorization();
@@ -130,7 +130,7 @@ namespace Guap.Net8.Web
 
 		private static void _addSsoAuthentication(
 			WebApplicationBuilder builder,
-			LibOptions options)
+			LibGuapOptions options)
 		{
 			if (options.Users != null)
 				builder.Services.AddSingleton

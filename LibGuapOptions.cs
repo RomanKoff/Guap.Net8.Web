@@ -7,17 +7,17 @@ namespace Guap.Net8.Web
 
 	public static partial class _e
 	{
-		private static LibOptions _libOptions;
-		public static LibOptions GetOptions_GuapNet8Web(
+		private static LibGuapOptions _options;
+		public static LibGuapOptions GetLibGuapOptions(
 			this IConfiguration configuration)
 		{
-			return _libOptions ??= configuration.GetOptions<LibOptions>("Guap.Net8.Web");
+			return _options ??= configuration.GetOptions<LibGuapOptions>("Guap.Net8.Web");
 		}
 	}
 
 
 
-	public class LibOptions
+	public class LibGuapOptions
 		: _AppSettingsOptions_Proto
 	{
 		public override void Test()
